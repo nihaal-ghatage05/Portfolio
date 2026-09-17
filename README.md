@@ -26,7 +26,6 @@ This project presents:
 
 - `index.html` — main portfolio page
 - `profile.png` — profile image used in the hero section
-- `README.md` — project documentation
 
 ## How to Run
 
