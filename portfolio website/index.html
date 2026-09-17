@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nihaal Ghatage - Computer Science Student & Aspiring Full Stack Developer. Portfolio showcasing Python, Java, and web development projects.">
+<meta name="keywords" content="Nihaal Ghatage, Portfolio, Web Developer, Python, Java, Full Stack">
+<title>Nihaal Ghatage | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563EB; --secondary:#0F172A; --accent:#38BDF8;
+  --bg:#ffffff; --bg-alt:#f1f5f9; --card:#ffffff; --text:#0F172A;
+  --muted:#64748b; --border:#e2e8f0; --shadow:0 10px 30px rgba(2,6,23,.08);
+}
+[data-theme="dark"]{
+  --bg:#0F172A; --bg-alt:#1e293b; --card:#1e293b; --text:#f1f5f9;
+  --muted:#94a3b8; --border:#334155; --shadow:0 10px 30px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .4s,color .4s}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif}
+img{max-width:100%}
+a{text-decoration:none;color:inherit}
+section{padding:90px 0}
+.container{width:min(1140px,92%);margin:auto}
+.section-title{text-align:center;font-size:2.1rem;margin-bottom:10px}
+.section-title span{color:var(--primary)}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:50px}
+
+/* Loader */
+#loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+#loader.hide{opacity:0;pointer-events:none}
+.spinner{width:52px;height:52px;border:5px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Nav */
+header{position:fixed;top:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px;width:min(1140px,92%);margin:auto}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.3rem}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-weight:500;font-size:.95rem;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:width .3s}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;gap:14px;align-items:center}
+#theme-toggle,#hamburger{background:var(--bg-alt);border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:1.1rem;transition:transform .3s}
+#theme-toggle:hover{transform:rotate(20deg) scale(1.1)}
+#hamburger{display:none}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:68px;background:radial-gradient(circle at 80% 20%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 50%)}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.15;animation:slideUp .8s ease both}
+.hero h1 span{color:var(--primary)}
+.typing{color:var(--accent);font-family:'Poppins',sans-serif;font-weight:600;font-size:1.25rem;min-height:1.9rem;display:block;margin:14px 0}
+.typing::after{content:'|';animation:blink .8s infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p{color:var(--muted);max-width:540px;margin-bottom:28px;animation:slideUp .8s .2s ease both}
+.btn{display:inline-block;padding:13px 30px;border-radius:12px;font-weight:600;font-size:.95rem;transition:transform .3s,box-shadow .3s;cursor:pointer;border:none}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.35)}
+.btn-outline{border:2px solid var(--primary);color:var(--primary);background:transparent;margin-left:12px}
+.btn:hover{transform:translateY(-4px) scale(1.03)}
+.hero-buttons{animation:slideUp .8s .35s ease both}
+.hero-art{display:flex;justify-content:center}
+.avatar{width:290px;height:290px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;font-size:6rem;color:#fff;font-family:'Poppins',sans-serif;font-weight:800;animation:float 4s ease-in-out infinite;box-shadow:var(--shadow)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.socials{display:flex;gap:14px;margin-top:30px;animation:slideUp .8s .5s ease both}
+.socials a{width:44px;height:44px;border-radius:12px;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s}
+.socials a:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s ease}
+.reveal.active{opacity:1;transform:none}
+
+/* About / Stats */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about-grid p{color:var(--muted);margin-bottom:16px}
+.objective{background:var(--bg-alt);border-left:4px solid var(--primary);padding:18px 20px;border-radius:0 12px 12px 0;font-style:italic}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 12px;text-align:center;box-shadow:var(--shadow);transition:transform .3s}
+.stat:hover{transform:translateY(-6px)}
+.stat h3{font-size:2rem;color:var(--primary)}
+.stat p{color:var(--muted);font-size:.85rem}
+
+/* Skills */
+.alt{background:var(--bg-alt)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+.skill-card h3{margin-bottom:20px;color:var(--primary);font-size:1.1rem}
+.bar-item{margin-bottom:18px}
+.bar-item .row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px;font-weight:500}
+.bar{height:8px;background:var(--border);border-radius:99px;overflow:hidden}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:99px;transition:width 1.4s ease}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tag{background:var(--bg-alt);border:1px solid var(--border);padding:8px 16px;border-radius:99px;font-size:.85rem;font-weight:500;transition:all .3s}
+.tag:hover{background:var(--primary);color:#fff;transform:scale(1.06)}
+
+/* Projects */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.project{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s}
+.project:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(37,99,235,.18)}
+.project-img{height:160px;background:linear-gradient(135deg,var(--secondary),var(--primary));display:flex;align-items:center;justify-content:center;font-size:3.2rem}
+.project-body{padding:24px}
+.project-body h3{font-size:1.1rem;margin-bottom:8px}
+.project-body p{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+.tech{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tech span{font-size:.75rem;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);padding:4px 12px;border-radius:99px;font-weight:600}
+.project-links a{font-size:.85rem;font-weight:600;padding:9px 18px;border-radius:10px;transition:all .3s}
+.gh{background:var(--secondary);color:#fff}
+[data-theme="dark"] .gh{background:var(--bg);border:1px solid var(--border)}
+.demo{border:2px solid var(--primary);color:var(--primary);margin-left:10px}
+.project-links a:hover{transform:translateY(-2px);opacity:.9}
+
+/* Timeline */
+.timeline{position:relative;max-width:680px;margin:auto;padding-left:34px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:3px;background:linear-gradient(var(--primary),var(--accent));border-radius:9px}
+.t-item{position:relative;margin-bottom:34px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 26px;box-shadow:var(--shadow)}
+.t-item::before{content:'';position:absolute;left:-33px;top:26px;width:16px;height:16px;border-radius:50%;background:var(--primary);border:3px solid var(--bg);box-shadow:0 0 0 3px var(--primary)}
+.t-item h3{font-size:1.05rem}
+.t-item .date{color:var(--accent);font-weight:600;font-size:.85rem}
+.t-item p{color:var(--muted);font-size:.92rem;margin-top:6px}
+
+/* Services & Achievements */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.mini-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 22px;text-align:center;box-shadow:var(--shadow);transition:all .35s}
+.mini-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--primary)}
+.mini-card .icon{font-size:2.2rem;margin-bottom:14px;display:inline-block;animation:float 3.5s ease-in-out infinite}
+.mini-card h3{font-size:1rem;margin-bottom:8px}
+.mini-card p{color:var(--muted);font-size:.85rem}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:44px}
+.c-info div{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+.c-info .icon{width:48px;height:48px;flex-shrink:0;border-radius:12px;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.c-info h4{font-size:.95rem}
+.c-info p{color:var(--muted);font-size:.88rem}
+form{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;box-shadow:var(--shadow)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+input,textarea{width:100%;padding:13px 16px;margin-bottom:16px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:inherit;font-size:.92rem;transition:border .3s}
+input:focus,textarea:focus{outline:none;border-color:var(--primary)}
+#form-msg{color:var(--accent);font-weight:600;font-size:.9rem;margin-top:10px;display:none}
+
+/* Footer */
+footer{background:var(--secondary);color:#cbd5e1;text-align:center;padding:34px 16px;font-size:.92rem}
+footer strong{color:#fff}
+
+/* Back to top */
+#toTop{position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:14px;background:var(--primary);color:#fff;border:none;font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transition:all .4s;z-index:900;box-shadow:0 8px 20px rgba(37,99,235,.4)}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-4px)}
+
+/* Responsive */
+@media(max-width:860px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-art{order:-1}
+  .avatar{width:200px;height:200px;font-size:4rem}
+  #hamburger{display:block}
+  .nav-links{position:fixed;top:68px;right:-100%;flex-direction:column;background:var(--card);width:230px;padding:26px;height:calc(100vh - 68px);border-left:1px solid var(--border);transition:right .4s;gap:20px}
+  .nav-links.open{right:0}
+  .f-row{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="spinner"></div></div>
+
+<header>
+  <nav>
+    <a href="#home" class="logo">Nihaal<span>.dev</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <h1>Hi, I'm <span>Nihaal Ghatage</span></h1>
+      <span class="typing" id="typing"></span>
+      <p>Passionate Computer Science student building real-world projects and mastering modern web technologies on my journey to becoming a Full Stack Developer.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Hire Me</a>
+        <a href="resume.pdf" download class="btn btn-outline">⬇ Download Resume</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/nihaal-ghatage05" aria-label="GitHub" target="_blank">🐙</a>
+        <a href="https://www.linkedin.com/in/nihaal-ghatage-17b54939a/" aria-label="LinkedIn" target="_blank">💼</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=nihaalghatage2007@gmail.com" aria-label="Email" target="_blank">✉️</a>
+
+        <a href="https://x.com/Nihaal_05" aria-label="Twitter" target="_blank">🐦</a>
+      </div>
+    </div>
+    <div class="hero-art">
+    <img src="profile.png" alt="Nihaal Ghatage" class="avatar">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title reveal">About <span>Me</span></h2>
+    <p class="section-sub reveal">Get to know me better</p>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I am a passionate Computer Science student currently in my <strong>third year</strong> of college. I enjoy learning new technologies and building real-world projects that improve my programming skills.</p>
+        <p>My goal is to become a <strong>Full Stack Developer</strong> and secure a high-paying software engineering job. I continuously improve by solving coding problems, building projects, and learning modern web technologies.</p>
+        <div class="objective">🎯 To become a skilled Software Engineer capable of developing scalable web applications while continuously learning and contributing to innovative projects.</div>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><h3 class="counter" data-target="5">0</h3><p>Projects Built</p></div>
+        <div class="stat"><h3 class="counter" data-target="7">0</h3><p>Technologies</p></div>
+        <div class="stat"><h3 class="counter" data-target="200">0</h3><p>Problems Solved</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="alt">
+  <div class="container">
+    <h2 class="section-title reveal">My <span>Skills</span></h2>
+    <p class="section-sub reveal">Technologies I work with</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>🎨 Frontend</h3>
+        <div class="bar-item"><div class="row"><span>HTML5</span><span>90%</span></div><div class="bar"><div data-w="90%"></div></div></div>
+        <div class="bar-item"><div class="row"><span>CSS3</span><span>85%</span></div><div class="bar"><div data-w="85%"></div></div></div>
+        <div class="bar-item"><div class="row"><span>JavaScript</span><span>65%</span></div><div class="bar"><div data-w="65%"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>💻 Programming & Database</h3>
+        <div class="bar-item"><div class="row"><span>Python</span><span>85%</span></div><div class="bar"><div data-w="85%"></div></div></div>
+        <div class="bar-item"><div class="row"><span>Java</span><span>70%</span></div><div class="bar"><div data-w="70%"></div></div></div>
+        <div class="bar-item"><div class="row"><span>SQL / MySQL</span><span>75%</span></div><div class="bar"><div data-w="75%"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>🛠 Tools & Learning</h3>
+        <div class="tags" style="margin-bottom:18px">
+          <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">XAMPP</span>
+        </div>
+        <h3>📚 Currently Learning</h3>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">DSA</span><span class="tag">SQL</span><span class="tag">React (Upcoming)</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>🤝 Soft Skills</h3>
+        <div class="tags">
+          <span class="tag">Problem Solving</span><span class="tag">Quick Learner</span><span class="tag">Teamwork</span>
+          <span class="tag">Communication</span><span class="tag">Time Management</span><span class="tag">Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title reveal">My <span>Projects</span></h2>
+    <p class="section-sub reveal">Things I've built</p>
+    <div class="projects-grid">
+      <div class="project reveal">
+        <div class="project-img">🎓</div>
+        <div class="project-body">
+          <h3>Student Management System</h3>
+          <p>Console-based application that manages student records with file handling.</p>
+          <div class="tech"><span>Python</span><span>File Handling</span></div>
+          <div class="project-links"><a href="#" class="gh">GitHub</a><a href="#" class="demo">Live Demo</a></div>
+        </div>
+      </div>
+      <div class="project reveal">
+        <div class="project-img">🌦️</div>
+        <div class="project-body">
+          <h3>Weather App</h3>
+          <p>Uses APIs to fetch real-time weather information based on city names.</p>
+          <div class="tech"><span>Python</span><span>REST API</span></div>
+          <div class="project-links"><a href="#" class="gh">GitHub</a><a href="#" class="demo">Live Demo</a></div>
+        </div>
+      </div>
+      <div class="project reveal">
+        <div class="project-img">💰</div>
+        <div class="project-body">
+          <h3>Expense Tracker</h3>
+          <p>File-based application to record and manage daily expenses.</p>
+          <div class="tech"><span>Python</span><span>File I/O</span></div>
+          <div class="project-links"><a href="#" class="gh">GitHub</a><a href="#" class="demo">Live Demo</a></div>
+        </div>
+      </div>
+      <div class="project reveal">
+        <div class="project-img">❓</div>
+        <div class="project-body">
+          <h3>Quiz Application</h3>
+          <p>Interactive quiz application with score calculation.</p>
+          <div class="tech"><span>Python</span><span>Logic</span></div>
+          <div class="project-links"><a href="#" class="gh">GitHub</a><a href="#" class="demo">Live Demo</a></div>
+        </div>
+      </div>
+      <div class="project reveal">
+        <div class="project-img">🚆</div>
+        <div class="project-body">
+          <h3>Railway Ticket Booking Simulator</h3>
+          <p>Software Engineering mini project demonstrating railway reservation workflow.</p>
+          <div class="tech"><span>Python</span><span>SE Concepts</span></div>
+          <div class="project-links"><a href="#" class="gh">GitHub</a><a href="#" class="demo">Live Demo</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & EXPERIENCE -->
+<section id="education" class="alt">
+  <div class="container">
+    <h2 class="section-title reveal">Education & <span>Experience</span></h2>
+    <p class="section-sub reveal">My journey so far</p>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <span class="date">Present · Third Year</span>
+        <h3>Bachelor of Science (Computer Science)</h3>
+        <p>Building a strong foundation in programming, data structures, databases, and software engineering.</p>
+      </div>
+      <div class="t-item reveal">
+        <span class="date">Ongoing</span>
+        <h3>Seeking Internship Opportunities</h3>
+        <p>Currently looking for internships and building projects to strengthen my development skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title reveal">My <span>Services</span></h2>
+    <p class="section-sub reveal">What I can do for you</p>
+    <div class="cards-grid">
+      <div class="mini-card reveal"><span class="icon">🌐</span><h3>Frontend Development</h3><p>Modern, clean websites with HTML, CSS & JavaScript.</p></div>
+      <div class="mini-card reveal"><span class="icon">🐍</span><h3>Python Development</h3><p>Console apps, automation & API-based tools.</p></div>
+      <div class="mini-card reveal"><span class="icon">☕</span><h3>Java Programming</h3><p>Object-oriented applications and problem solving.</p></div>
+      <div class="mini-card reveal"><span class="icon">🗄️</span><h3>Database Design</h3><p>MySQL schema design and SQL queries.</p></div>
+      <div class="mini-card reveal"><span class="icon">📱</span><h3>Responsive Web Design</h3><p>Mobile-first layouts that work on every device.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="alt">
+  <div class="container">
+    <h2 class="section-title reveal">My <span>Achievements</span></h2>
+    <p class="section-sub reveal">Milestones on my learning path</p>
+    <div class="cards-grid">
+      <div class="mini-card reveal"><span class="icon">🏆</span><h3>HTML Fundamentals</h3><p>Completed HTML fundamentals course.</p></div>
+      <div class="mini-card reveal"><span class="icon">🎨</span><h3>CSS Mastery</h3><p>Completed CSS learning journey.</p></div>
+      <div class="mini-card reveal"><span class="icon">🚀</span><h3>Python Projects</h3><p>Built multiple real-world Python projects.</p></div>
+      <div class="mini-card reveal"><span class="icon">📈</span><h3>Full Stack Path</h3><p>Learning JavaScript & Full Stack Development.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title reveal">Get In <span>Touch</span></h2>
+    <p class="section-sub reveal">Let's work together</p>
+    <div class="contact-grid">
+      <div class="c-info reveal">
+        <div><span class="icon">👤</span><div><h4>Name</h4><p>Nihaal Ghatage</p></div></div>
+        <div><span class="icon">✉️</span><div><h4>Email</h4><p>nihaalghatage2007@gmail.com</p></div></div>
+        <div><span class="icon">📞</span><div><h4>Phone</h4><p>+91 9321466085</p></div></div>
+        <div><span class="icon">📍</span><div><h4>Location</h4><p>Maharashtra, India</p></div></div>
+      </div>
+      <form id="contactForm" class="reveal">
+        <div class="f-row">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+        </div>
+        <input type="text" placeholder="Subject" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message 🚀</button>
+        <p id="form-msg">✅ Thank you! Your message has been sent.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Copyright © 2026 <strong>Nihaal Ghatage</strong>. All rights reserved.</p>
+  <p>Designed with ❤️ using HTML, CSS, JavaScript.</p>
+</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+// Loader
+window.addEventListener('load',()=>document.getElementById('loader').classList.add('hide'));
+
+// Theme toggle (remembers choice)
+const toggle=document.getElementById('theme-toggle');
+const setTheme=t=>{document.documentElement.setAttribute('data-theme',t);toggle.textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('theme',t)};
+setTheme(localStorage.getItem('theme')||'light');
+toggle.onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+
+// Mobile nav
+const nav=document.getElementById('navLinks');
+document.getElementById('hamburger').onclick=()=>nav.classList.toggle('open');
+nav.querySelectorAll('a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+
+// Typing animation
+const roles=['Computer Science Student','Aspiring Software Developer','Future Full Stack Developer','Python Developer'];
+let ri=0,ci=0,del=false;
+(function type(){
+  const el=document.getElementById('typing'),word=roles[ri];
+  el.textContent=word.slice(0,ci);
+  if(!del&&ci<word.length){ci++;setTimeout(type,90)}
+  else if(del&&ci>0){ci--;setTimeout(type,45)}
+  else{del=!del;if(!del)ri=(ri+1)%roles.length;setTimeout(type,del?1400:300)}
+})();
+
+// Scroll reveal + skill bars + counters
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('active');
+    e.target.querySelectorAll('.bar div').forEach(b=>b.style.width=b.dataset.w);
+    e.target.querySelectorAll('.counter').forEach(c=>{
+      if(c.dataset.done)return;c.dataset.done=1;
+      const t=+c.dataset.target;let n=0;
+      const step=()=>{n+=Math.ceil(t/50);if(n>=t){c.textContent=t+'+'}else{c.textContent=n;requestAnimationFrame(step)}};step();
+    });
+    io.unobserve(e.target);
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Back to top
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>500));
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+// Contact form
+document.getElementById('contactForm').onsubmit=e=>{
+  e.preventDefault();
+  document.getElementById('form-msg').style.display='block';
+  e.target.reset();
+  setTimeout(()=>document.getElementById('form-msg').style.display='none',4000);
+};
+</script>
+</body>
+</html>
